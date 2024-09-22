@@ -7,28 +7,32 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
             line-height: 1.6;
-            color: #333;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 20px;
+            position: relative;
         }
-        h1, h2 {
-            color: #2c3e50;
+        h1, h2, h3 {
+            color: #ffffff;
         }
-        code {
-            background-color: #f4f4f4;
-            padding: 2px 4px;
-            border-radius: 4px;
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
         }
-        pre {
-            background-color: #f4f4f4;
-            padding: 10px;
-            border-radius: 4px;
-            overflow-x: auto;
+        .subtitle {
+            color: #b19cd9;
+            font-size: 1.2em;
+            margin-bottom: 30px;
         }
         a {
-            color: #3498db;
+            color: #b19cd9;
             text-decoration: none;
         }
         a:hover {
@@ -37,170 +41,207 @@
         .hidden {
             display: none;
         }
+        .lang-button {
+            background-color: #b19cd9;
+            color: #000000;
+            border: none;
+            padding: 5px 10px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .accent-line {
+            position: absolute;
+            background-color: #b19cd9;
+            opacity: 0.5;
+        }
+        .accent-line-1 {
+            width: 2px;
+            height: 100%;
+            left: -50px;
+            top: 0;
+            transform: rotate(15deg);
+        }
+        .accent-line-2 {
+            width: 2px;
+            height: 150%;
+            right: -100px;
+            top: -100px;
+            transform: rotate(-30deg);
+        }
+        pre {
+            background-color: #1a1a1a;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            color: #b19cd9;
+        }
+        ul, ol {
+            padding-left: 20px;
+        }
     </style>
 </head>
 <body>
-    <button onclick="showContent('pt')">Português</button>
-    <button onclick="showContent('en')">English</button>
+    <div class="container">
+        <div class="accent-line accent-line-1"></div>
+        <div class="accent-line accent-line-2"></div>
+        
+        <button class="lang-button" onclick="showContent('pt')">Português</button>
+        <button class="lang-button" onclick="showContent('en')">English</button>
 
-    <div id="content-pt">
-        <h1>BskyAgent</h1>
-        <p>BskyAgent é uma biblioteca projetada para interagir com o Bsky API de forma simples e eficaz para aplicações que utilizam Java.</p>
-        <h2>Sumário</h2>
-        <ul>
-            <li><a href="#requisitos">Requisitos</a></li>
-            <li><a href="#instalacao">Instalação</a></li>
-            <li><a href="#uso">Uso</a></li>
-            <li><a href="#excecoes">Exceções e Tratamento de Erros</a></li>
-            <li><a href="#contribuindo">Contribuindo</a></li>
-            <li><a href="#licenca">Licença</a></li>
-            <li><a href="#contato">Contato</a></li>
-        </ul>
+        <div id="content-pt">
+            <h1>BskyAgent</h1>
+            <p>BskyAgent é uma biblioteca projetada para interagir com o Bsky API de forma simples e eficaz para aplicações que utilizam Java.</p>
+            
+            <h2>Sumário</h2>
+            <ul>
+                <li><a href="#requisitos">Requisitos</a></li>
+                <li><a href="#instalacao">Instalação</a></li>
+                <li><a href="#uso">Uso</a></li>
+                <li><a href="#excecoes">Exceções e Tratamento de Erros</a></li>
+                <li><a href="#contribuindo">Contribuindo</a></li>
+                <li><a href="#licenca">Licença</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
 
-        <h2 id="requisitos">Requisitos</h2>
-        <ul>
-            <li>Java 8 ou superior.</li>
-            <li>arquivo `pom.xml`</li>
-            <li>Maven</li>
-        </ul>
+            <h2 id="requisitos">Requisitos</h2>
+            <ul>
+                <li>Java 8 ou superior.</li>
+                <li>arquivo `pom.xml`</li>
+                <li>Maven</li>
+            </ul>
 
-        <h2 id="instalacao">Instalação</h2>
-        <p>Clone o repositório:</p>
-        <pre><code>git clone https://github.com/MarlonJerold/bskyAgent.git</code></pre>
+            <h2 id="instalacao">Instalação</h2>
+            <p>Clone o repositório:</p>
+            <pre><code>git clone https://github.com/MarlonJerold/bskyAgent.git</code></pre>
 
-        <p>Adicionar dependência em arquivo `pom.xml`:</p>
-        <pre><code>
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.bluesky&lt;/groupId&gt;
-            &lt;artifactId&gt;bluesky-library&lt;/artifactId&gt;
-            &lt;version&gt;1.0.0&lt;/version&gt;
-        &lt;/dependency&gt;
-        </code></pre>
+            <p>Adicionar dependência em arquivo `pom.xml`:</p>
+            <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.bluesky&lt;/groupId&gt;
+    &lt;artifactId&gt;bluesky-library&lt;/artifactId&gt;
+    &lt;version&gt;1.0.0&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
 
-        <p>Navegue até o projeto e compile o rode o seguinte comando, certifique que você tenha o Maven instalado em seu ambiente:</p>
-        <pre><code>cd bskyAgent
-mvn clean install
-</code></pre>
+            <p>Navegue até o projeto e compile o rode o seguinte comando, certifique que você tenha o Maven instalado em seu ambiente:</p>
+            <pre><code>cd bskyAgent
+mvn clean install</code></pre>
 
-        <h2 id="uso">Uso</h2>
-        <h3>Autenticação</h3>
-        <pre><code>String handle = "seu-handle";
+            <h2 id="uso">Uso</h2>
+            <h3>Autenticação</h3>
+            <pre><code>String handle = "seu-handle";
 String appPassword = "sua-senha-de-app";
 BskyAgent agent = new BskyAgent(handle, appPassword);</code></pre>
 
-        <h3>CreatePost</h3>
-        <pre><code>String texto = "Olá, Bsky!";
+            <h3>CreatePost</h3>
+            <pre><code>String texto = "Olá, Bsky!";
 agent.createPost(texto);</code></pre>
 
-        <h3>GetProfile</h3>
-        <pre><code>String actor = "patinho.tech"
+            <h3>GetProfile</h3>
+            <pre><code>String actor = "patinho.tech"
 Profile profile = agent.getProfile("patinho.tech");</code></pre>
 
-        <h3>GetPostThread</h3>
-        <pre><code>agent.getPostThread("url do Post");</code></pre>
+            <h3>GetPostThread</h3>
+            <pre><code>agent.getPostThread("url do Post");</code></pre>
 
-        <h2 id="excecoes">Exceções e Tratamento de Erros</h2>
-        <p>BskyAgent lança IOException em caso de falha nas requisições HTTP ou problemas na comunicação com a API. Certifique-se de tratar essas exceções adequadamente no seu código para lidar com falhas de rede ou respostas inesperadas da API.</p>
+            <h2 id="excecoes">Exceções e Tratamento de Erros</h2>
+            <p>BskyAgent lança IOException em caso de falha nas requisições HTTP ou problemas na comunicação com a API. Certifique-se de tratar essas exceções adequadamente no seu código para lidar com falhas de rede ou respostas inesperadas da API.</p>
 
-        <h2 id="contribuindo">Contribuindo</h2>
-        <p>Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull requests. Antes de contribuir, por favor leia o guia de contribuição.</p>
-        <ol>
-            <li>Faça um fork do projeto</li>
-            <li>Crie uma nova branch: <code>git checkout -b my-feature</code></li>
-            <li>Faça suas mudanças e commit: <code>git commit -m 'Add my feature'</code></li>
-            <li>Envie para a branch original: <code>git push origin my-feature</code></li>
-            <li>Abra um pull request</li>
-        </ol>
+            <h2 id="contribuindo">Contribuindo</h2>
+            <p>Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull requests. Antes de contribuir, por favor leia o guia de contribuição.</p>
+            <ol>
+                <li>Faça um fork do projeto</li>
+                <li>Crie uma nova branch: <code>git checkout -b my-feature</code></li>
+                <li>Faça suas mudanças e commit: <code>git commit -m 'Add my feature'</code></li>
+                <li>Envie para a branch original: <code>git push origin my-feature</code></li>
+                <li>Abra um pull request</li>
+            </ol>
 
-        <h2 id="licenca">Licença</h2>
-        <p>Este projeto está licenciado sob a Licença MIT. Veja o arquivo LICENSE para mais detalhes.</p>
+            <h2 id="licenca">Licença</h2>
+            <p>Este projeto está licenciado sob a Licença MIT. Veja o arquivo LICENSE para mais detalhes.</p>
 
-        <h2 id="contato">Contato</h2>
-        <p>Para dúvidas, sugestões ou feedback, você pode entrar em contato através de <a href="mailto:jeroldmarlon5@gmail.com">jeroldmarlon5@gmail.com</a>.</p>
-    </div>
+            <h2 id="contato">Contato</h2>
+            <p>Para dúvidas, sugestões ou feedback, você pode entrar em contato através de <a href="mailto:jeroldmarlon5@gmail.com">jeroldmarlon5@gmail.com</a>.</p>
+        </div>
 
-    <div id="content-en" class="hidden">
-        <h1>BskyAgent</h1>
-        <p>BskyAgent is a library designed to interact with the Bsky API in a simple and effective way for applications using Java.</p>
-        <h2>Table of Contents</h2>
-        <ul>
-            <li><a href="#requirements">Requirements</a></li>
-            <li><a href="#installation">Installation</a></li>
-            <li><a href="#usage">Usage</a></li>
-            <li><a href="#exceptions">Exceptions and Error Handling</a></li>
-            <li><a href="#contributing">Contributing</a></li>
-            <li><a href="#license">License</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+        <div id="content-en" class="hidden">
+            <h1>BskyAgent</h1>
+            <p class="subtitle">Software Developer</p>
+            <p>BskyAgent is a library designed to interact with the Bsky API in a simple and effective way for applications using Java.</p>
+            
+            <h2>Table of Contents</h2>
+            <ul>
+                <li><a href="#requirements">Requirements</a></li>
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#usage">Usage</a></li>
+                <li><a href="#exceptions">Exceptions and Error Handling</a></li>
+                <li><a href="#contributing">Contributing</a></li>
+                <li><a href="#license">License</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
 
-        <h2 id="requirements">Requirements</h2>
-        <ul>
-            <li>Java 8 or higher.</li>
-            <li>`pom.xml` file</li>
-            <li>Maven</li>
-        </ul>
+            <h2 id="requirements">Requirements</h2>
+            <ul>
+                <li>Java 8 or higher.</li>
+                <li>`pom.xml` file</li>
+                <li>Maven</li>
+            </ul>
 
-        <h2 id="installation">Installation</h2>
-        <p>Clone the repository:</p>
-        <pre><code>git clone https://github.com/MarlonJerold/bskyAgent.git</code></pre>
+            <h2 id="installation">Installation</h2>
+            <p>Clone the repository:</p>
+            <pre><code>git clone https://github.com/MarlonJerold/bskyAgent.git</code></pre>
 
-        <p>Add dependency to `pom.xml` file:</p>
-        <pre><code>
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.bluesky&lt;/groupId&gt;
-            &lt;artifactId&gt;bluesky-library&lt;/artifactId&gt;
-            &lt;version&gt;1.0.0&lt;/version&gt;
-        &lt;/dependency&gt;
-        </code></pre>
+            <p>Add dependency to `pom.xml` file:</p>
+            <pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.bluesky&lt;/groupId&gt;
+    &lt;artifactId&gt;bluesky-library&lt;/artifactId&gt;
+    &lt;version&gt;1.0.0&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
 
-        <p>Navigate to the project and compile it by running the following command, make sure you have Maven installed in your environment:</p>
-        <pre><code>cd bskyAgent
-mvn clean install
-</code></pre>
+            <p>Navigate to the project and compile it by running the following command, make sure you have Maven installed in your environment:</p>
+            <pre><code>cd bskyAgent
+mvn clean install</code></pre>
 
-        <h2 id="usage">Usage</h2>
-        <h3>Authentication</h3>
-        <pre><code>String handle = "your-handle";
+            <h2 id="usage">Usage</h2>
+            <h3>Authentication</h3>
+            <pre><code>String handle = "your-handle";
 String appPassword = "your-app-password";
 BskyAgent agent = new BskyAgent(handle, appPassword);</code></pre>
 
-        <h3>CreatePost</h3>
-        <pre><code>String text = "Hello, Bsky!";
+            <h3>CreatePost</h3>
+            <pre><code>String text = "Hello, Bsky!";
 agent.createPost(text);</code></pre>
 
-        <h3>GetProfile</h3>
-        <pre><code>String actor = "patinho.tech"
+            <h3>GetProfile</h3>
+            <pre><code>String actor = "patinho.tech"
 Profile profile = agent.getProfile("patinho.tech");</code></pre>
 
-        <h3>GetPostThread</h3>
-        <pre><code>agent.getPostThread("Post URL");</code></pre>
+            <h3>GetPostThread</h3>
+            <pre><code>agent.getPostThread("Post URL");</code></pre>
 
-        <h2 id="exceptions">Exceptions and Error Handling</h2>
-        <p>BskyAgent throws IOException in case of HTTP request failures or communication problems with the API. Make sure to handle these exceptions properly in your code to deal with network failures or unexpected API responses.</p>
+            <h2 id="exceptions">Exceptions and Error Handling</h2>
+            <p>BskyAgent throws IOException in case of HTTP request failures or communication problems with the API. Make sure to handle these exceptions properly in your code to deal with network failures or unexpected API responses.</p>
 
-        <h2 id="contributing">Contributing</h2>
-        <p>Contributions are welcome! Feel free to open issues or pull requests. Before contributing, please read the contribution guide.</p>
-        <ol>
-            <li>Fork the project</li>
-            <li>Create a new branch: <code>git checkout -b my-feature</code></li>
-            <li>Make your changes and commit: <code>git commit -m 'Add my feature'</code></li>
-            <li>Push to the original branch: <code>git push origin my-feature</code></li>
-            <li>Open a pull request</li>
-        </ol>
+            <h2 id="contributing">Contributing</h2>
+            <p>Contributions are welcome! Feel free to open issues or pull requests. Before contributing, please read the contribution guide.</p>
+            <ol>
+                <li>Fork the project</li>
+                <li>Create a new branch: <code>git checkout -b my-feature</code></li>
+                <li>Make your changes and commit: <code>git commit -m 'Add my feature'</code></li>
+                <li>Push to the original branch: <code>git push origin my-feature</code></li>
+                <li>Open a pull request</li>
+            </ol>
 
-        <h2 id="license">License</h2>
-        <p>This project is licensed under the MIT License. See the LICENSE file for more details.</p>
+            <h2 id="license">License</h2>
+            <p>This project is licensed under the MIT License. See the LICENSE file for more details.</p>
 
-        <h2 id="contact">Contact</h2>
-        <p>For questions, suggestions, or feedback, you can contact us at <a href="mailto:jeroldmarlon5@gmail.com">jeroldmarlon5@gmail.com</a>.</p>
+            <h2 id="contact">Contact</h2>
+            <p>For questions, suggestions, or feedback, you can contact us at <a href="mailto:jeroldmarlon5@gmail.com">jeroldmarlon5@gmail.com</a>.</p>
+        </div>
+
+        <div>
+            <a href="#">github</a>
+            <a href="#">blog</a>
+        </div>
     </div>
-
-    <script>
-        function showContent(lang) {
-            document.getElementById('content-pt').classList.add('hidden');
-            document.getElementById('content-en').classList.add('hidden');
-            document.getElementById('content-' + lang).classList.remove('hidden');
-        }
-    </script>
-</body>
-</html>
